@@ -1,0 +1,27 @@
+<div class="container-fluid text-center bg-white">
+<div class="row">
+  <div class="col">
+    <h1 class="display-1">Rain.Shine.Crime</h1>
+  </div>
+</div>
+<div class="row form-group no-gutters">
+  <div class="col-12 col-md-8">
+    <input placeholder="search for location" id="place" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl">
+  </div>
+  <div class="col">
+    <button type="button" class="btn btn-success weather" data-toggle="modal" data-target="#weather">Weather</button>
+  </div>
+  <div class="col">
+    <button type="button" class="btn btn-warning crime" data-toggle="modal" data-target="#crime">Crime</button>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
+      <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+    </agm-map>
+    <!-- Insert Bootstrap modals -->
+    <app-modal></app-modal>
+  </div>
+</div>
+</div>

@@ -1,0 +1,59 @@
+/* Heading styles*/
+h1{
+     word-wrap: break-word;
+     -webkit-hyphens: auto;
+     -moz-hyphens: auto;
+     -ms-hyphens: auto;
+     -o-hyphens: auto;
+     hyphens: auto;
+}
+
+h1.display-1 {
+  font-size: 30px;
+  color:rgb(41, 43, 44);
+  font-weight: 300;
+  font-family: apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+
+/* Button styles*/
+button {
+  width: 100%;
+  margin-top: 2%;
+}
+
+.weather {
+  float: left;
+}
+
+.crime {
+  float: right;
+}
+ 
+/* Always set the map height explicitly to define the size of the div element that contains the map. */
+agm-map {
+      height: 100vh;
+    }
+
+/* Modal styles*/
+
+
+/* Break point styles*/
+@media screen and (min-width: 500px) { 
+button {
+  width: 95%;
+  }
+h1.display-1 {
+  font-size: 60px;
+}
+}
+
+@media screen and (min-width: 768px) {
+button.weather, button.crime {
+  margin-top: 0;
+  width: 90%;
+  float: none;
+  }
+h1.display-1 {
+  font-size: 96px;
+}
+}
