@@ -1,4 +1,4 @@
-# MyApp
+# Rain-Shine-Crime (Work in Progress)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.3.
 
