@@ -7,7 +7,7 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 
 const app = express();
-const api = require('./server/routes/api.js')
+const api = require('./server/routes/')
 
 // morgan gives http request logging
 app.use(morgan('dev'));
