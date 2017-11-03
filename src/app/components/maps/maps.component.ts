@@ -81,7 +81,7 @@ export class MapsComponent implements OnInit {
   }
   
   getWeather() {
-    this.getCrime();
+    //this.getCrime();
     // get location name with coordinates
     this.mapService.getLocationName(this.latitude, this.longitude)
       .then(name => {
