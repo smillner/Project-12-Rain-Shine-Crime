@@ -81,7 +81,6 @@ export class MapsComponent implements OnInit {
   }
   
   getWeather() {
-    //this.getCrime();
     // get location name with coordinates
     this.mapService.getLocationName(this.latitude, this.longitude)
       .then(name => {
@@ -92,19 +91,12 @@ export class MapsComponent implements OnInit {
     this.weatherService.weatherData(this.coordinates)
         .subscribe(res => {
         this.weatherData = res;
-        console.log(this.weatherData)
       }, err => {
         console.log(err)
       });
   }
 
   getCrime() {
-    // get location name with coordinates
-    this.mapService.getLocationName(this.latitude, this.longitude)
-      .then(name => {
-        this.locationName = name.toString();
-      });
-
     // use service to retrieve crime stats for selected city 
     this.crimeService.getCrimeData(this.coordinates)
         .subscribe( res => { 
