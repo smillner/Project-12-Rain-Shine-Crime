@@ -29,6 +29,7 @@ export class ModalComponent implements OnInit {
     ) {}
 
 	ngOnInit() {
+    console.log(this.weatherData)
   } 
 
   register() { 

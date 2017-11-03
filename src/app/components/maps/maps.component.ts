@@ -92,6 +92,7 @@ export class MapsComponent implements OnInit {
     this.weatherService.weatherData(this.coordinates)
         .subscribe(res => {
         this.weatherData = res;
+        console.log(this.weatherData)
       }, err => {
         console.log(err)
       });
