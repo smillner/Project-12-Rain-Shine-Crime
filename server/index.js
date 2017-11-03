@@ -9,7 +9,12 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 
 // mongodb connection
-mongoose.connect('mongodb://localhost:27017/rainshinecrime');
+if(process.env.NODE_ENV === 'production') {
+	mongoose.connect('mongodb://heroku_c6qkdqmm:2U4c3021@ds245615.mlab.com:45615/heroku_c6qkdqmm');
+} else {
+	mongoose.connect('mongodb://localhost:27017/rainshinecrime');
+}
+
 const db = mongoose.connection;
 
 // mongo error
