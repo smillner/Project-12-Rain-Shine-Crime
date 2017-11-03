@@ -23,9 +23,9 @@ router.get('/crime/:latitude/:longitude', (req, res, next) => {
 	let longitude = req.params.longitude;
 	request(`https://api.spotcrime.com/crimes.json?lat=${latitude}&lon=${longitude}&radius=0.02&callback=jQuery213027649028043821566_1509493804094&key=privatekeyforspotcrimepublicusers-commercialuse-877.410.1607&_=1509493804097`,
 		(error, response, body) => {
-			console.log(error, response.status, body);
+			console.log(error, response, body);
 			
-			return res.send(body);
+			return res.send(response);
 		});
 });
 
