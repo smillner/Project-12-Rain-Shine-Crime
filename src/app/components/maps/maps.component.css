@@ -28,6 +28,12 @@ button {
 .crime {
   float: right;
 }
+
+.login {
+  width: 100%;
+  margin-top: 0;
+  float: left;
+}
  
 /* Always set the map height explicitly to define the size of the div element that contains the map. */
 agm-map {
@@ -39,6 +45,7 @@ agm-map {
 
 /* Break point styles*/
 @media screen and (min-width: 500px) { 
+
 button {
   width: 95%;
   }
@@ -48,11 +55,13 @@ h1.display-1 {
 }
 
 @media screen and (min-width: 768px) {
+
 button.weather, button.crime {
   margin-top: 0;
-  width: 90%;
-  float: none;
+  width: 95%;
+  float: left;
   }
+
 h1.display-1 {
   font-size: 96px;
 }
