@@ -26,6 +26,7 @@
     "@angular/cli": "1.4.3",
     "@angular/common": "^4.2.4",
     "@angular/compiler": "^4.2.4",
+    "@angular/compiler-cli": "^4.2.4",
     "@angular/core": "^4.2.4",
     "@angular/forms": "^4.2.4",
     "@angular/http": "^4.2.4",
@@ -43,10 +44,10 @@
     "morgan": "^1.9.0",
     "path": "^0.12.7",
     "rxjs": "^5.4.2",
+    "typescript": "~2.3.3",
     "zone.js": "^0.8.14"
   },
   "devDependencies": {
-    "@angular/compiler-cli": "^4.2.4",
     "@angular/language-service": "^4.2.4",
     "@types/googlemaps": "^3.29.0",
     "@types/jasmine": "~2.5.53",
@@ -64,7 +65,6 @@
     "protractor": "~5.1.2",
     "request": "^2.83.0",
     "ts-node": "~3.2.0",
-    "tslint": "~5.3.2",
-    "typescript": "~2.3.3"
+    "tslint": "~5.3.2"
   }
 }
