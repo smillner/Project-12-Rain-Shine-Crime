@@ -25,7 +25,7 @@ router.get('/crime/:latitude/:longitude', (req, res, next) => {
 		(error, response, body) => {
 			console.log(error, response, body);
 			
-			return res.send(response);
+			return res.send(body);
 		});
 });
 
