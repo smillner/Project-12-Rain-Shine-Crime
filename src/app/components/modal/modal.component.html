@@ -2,52 +2,54 @@
     <div id="weather" class="modal">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">{{weatherData}}</h5>
+          <div class="modal-header text-muted">
+            <h5 class="modal-title">{{locationName}}</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
+          <div class="modal-body" *ngIf="weatherData">
             <div class="container-fluid">
               <div class="row">
-                <div class="col-md-4">.col-md-4</div>
-                <div class="col-md-4 ml-auto">.col-md-4 .ml-auto</div>
+                <div class="col-12">
+                  <h4 class="text-left">Current:</h4>
+                  <div>
+                    <ul class="pl-0">
+                      <li class="list-group-item">{{weatherData.currently.summary}}</li>
+                      <li class="list-group-item">Temp: {{weatherData.currently.temperature}}</li>
+                      <li class="list-group-item">Humidity: {{weatherData.currently.humidity*100}}%</li>
+                      <li class="list-group-item">Wind speed: {{weatherData.currently.windSpeed}} mph</li>
+                    </ul>
+                  </div>
+                </div>
               </div>
               <div class="row">
-                <div class="col-md-3 ml-auto">.col-md-3 .ml-auto</div>
-                <div class="col-md-2 ml-auto">.col-md-2 .ml-auto</div>
-              </div>
-              <div class="row">
-                <div class="col-md-6 ml-auto">.col-md-6 .ml-auto</div>
-              </div>
-              <div class="row">
-                <div class="col-sm-9">
-                  Level 1: .col-sm-9
-                  <div class="row">
-                    <div class="col-8 col-sm-6">
-                      Level 2: .col-8 .col-sm-6
-                    </div>
-                    <div class="col-4 col-sm-6">
-                      Level 2: .col-4 .col-sm-6
-                    </div>
+                 <div class="col-12">
+                  <h4 class="text-left">Tomorrow:</h4>
+                  <div>
+                    <ul class="pl-0">
+                      <li class="list-group-item">{{weatherData.daily.data[1].summary}}</li>
+                      <li class="list-group-item">High: {{weatherData.daily.data[1].temperatureHigh}}</li>
+                      <li class="list-group-item">Low: {{weatherData.daily.data[1].temperatureLow}}</li>
+                      <li class="list-group-item">Humidity: {{weatherData.daily.data[1].humidity*100}}%</li>
+                      <li class="list-group-item">Wind speed: {{weatherData.daily.data[1].windSpeed}} mph</li>
+                    </ul>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary">Save changes</button>
+          <div class="modal-footer" style="background-color: rgba(201, 216, 247, 0.5)">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
     </div>
     <div id="crime" class="modal">
-      <div class="modal-dialog" role="document">
+      <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">{{crimeTest}}</h5>
+            <h5 class="modal-title">5 most recent crimes in {{locationName}}</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -55,33 +57,75 @@
           <div class="modal-body">
             <div class="container-fluid">
               <div class="row">
-                <div class="col-md-4">.col-md-4</div>
-                <div class="col-md-4 ml-auto">.col-md-4 .ml-auto</div>
-              </div>
-              <div class="row">
-                <div class="col-md-3 ml-auto">.col-md-3 .ml-auto</div>
-                <div class="col-md-2 ml-auto">.col-md-2 .ml-auto</div>
-              </div>
-              <div class="row">
-                <div class="col-md-6 ml-auto">.col-md-6 .ml-auto</div>
-              </div>
-              <div class="row">
-                <div class="col-sm-9">
-                  Level 1: .col-sm-9
-                  <div class="row">
-                    <div class="col-8 col-sm-6">
-                      Level 2: .col-8 .col-sm-6
-                    </div>
-                    <div class="col-4 col-sm-6">
-                      Level 2: .col-4 .col-sm-6
-                    </div>
+                <div class="col-sm-4">
+                  <h4 class="text-left">Type:</h4>
+                  <div>
+                    <ul class="pl-0">
+                      <li class="list-group-item" *ngFor='let crime of crimes.crimes | slice:0:5'>{{crime.type}}</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                   <h4 class="text-left">Date:</h4>
+                   <div>
+                    <ul class="pl-0">
+                      <li class="list-group-item" *ngFor='let crime of crimes.crimes | slice:0:5'>{{crime.date.substring(0, 8)}}</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                   <h4 class="text-left">Location:</h4>
+                   <div>
+                    <ul class="pl-0">
+                      <li class="list-group-item" *ngFor='let crime of crimes.crimes | slice:0:5'>
+                        <a href="{{crime.link}}" target="_blank">See on map</a>
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary">Save changes</button>
+          <div class="modal-footer" style="background-color: rgba(201, 216, 247, 0.5)">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="login" class="modal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Sign up for new features coming soon!!</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col">
+                  <div class="text-left">
+                    <form (submit)="register()" #registrationForm="ngForm"> 
+                      <div class="form-group">
+                        <label for="email">Email address</label>
+                        <input class="form-control" type="email" name="email" [(ngModel)]="email" id="email" aria-describedby="emailHelp" placeholder="Enter email" required/>
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                      </div>
+                      <div class="form-group">
+                        <label for="password">Password</label>
+                        <input class="form-control" type="password" name="password" [(ngModel)]="password" id="password" placeholder="Password" required/>
+                        <label for="confirmPassword">Confirm password</label>
+                        <input class="form-control" type="password" name="confirmPassword" [(ngModel)]="confirmPassword" id="confirmPassword" placeholder="Confirm password" required/>
+                      </div>
+                      <button class="btn btn-primary">Submit</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer" style="background-color: rgba(201, 216, 247, 0.5)">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           </div>
         </div>

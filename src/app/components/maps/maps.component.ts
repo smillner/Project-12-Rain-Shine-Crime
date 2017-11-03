@@ -1,7 +1,11 @@
 import { Component, ElementRef, NgZone, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { MapService } from '../../services/maps.service';
+import { CrimeService } from '../../services/crime.service';
+import { WeatherService } from '../../services/weather.service';
 import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-maps',
@@ -10,32 +14,34 @@ import { MapsAPILoader } from '@agm/core';
 })
 
 export class MapsComponent implements OnInit {
-  // variables for Google Maps geolocate service
+
   latitude: number;
   longitude: number;
+  coordinates: Array<number> = [this.latitude, this.longitude];
   searchControl: FormControl;
   zoom: number;
+  locationName:string;
+  weatherData: Object;
+  crimes: Array<string>;
 
   @ViewChild("search")
   public searchElementRef: ElementRef;
 
   constructor(
     private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone
+    private ngZone: NgZone,
+    private modalComponent: ModalComponent,
+    private mapService: MapService, 
+    private weatherService: WeatherService,
+    private crimeService: CrimeService
   ) {}
 
   ngOnInit() {
-    //set google maps defaults
-    this.zoom = 4;
-    this.latitude = 39.8282;
-    this.longitude = -98.5795;
-
-    //create search FormControl
     this.searchControl = new FormControl();
 
     //set current position
     this.setCurrentPosition();
-
+    
     //load Places Autocomplete
     this.mapsAPILoader.load().then(() => {
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
@@ -56,6 +62,7 @@ export class MapsComponent implements OnInit {
           //set latitude, longitude and zoom
           this.latitude = place.geometry.location.lat();
           this.longitude = place.geometry.location.lng();
+          this.coordinates = [this.latitude, this.longitude];
           this.zoom = 12;
         });
       });
@@ -67,11 +74,46 @@ export class MapsComponent implements OnInit {
       navigator.geolocation.getCurrentPosition((position) => {
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
+        this.coordinates = [this.latitude, this.longitude];
         this.zoom = 12;
       });
     }
   }
   
+  getWeather() {
+    this.getCrime();
+    // get location name with coordinates
+    this.mapService.getLocationName(this.latitude, this.longitude)
+      .then(name => {
+        this.locationName = name.toString();
+      });
+
+    // use service to retrieve weather data for selected city
+    this.weatherService.weatherData(this.coordinates)
+        .subscribe(res => {
+        this.weatherData = res;
+      }, err => {
+        console.log(err)
+      });
+  }
+
+  getCrime() {
+    // get location name with coordinates
+    this.mapService.getLocationName(this.latitude, this.longitude)
+      .then(name => {
+        this.locationName = name.toString();
+      });
+
+    // use service to retrieve crime stats for selected city 
+    this.crimeService.getCrimeData(this.coordinates)
+        .subscribe( res => { 
+          // return part of string that can be parsed
+          this.crimes = JSON.parse(res.split('(').pop().split(')').shift());
+        },
+        err => { 
+          console.log(err);
+        });
+  }
 }
 
 

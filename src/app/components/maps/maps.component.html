@@ -5,23 +5,26 @@
   </div>
 </div>
 <div class="row form-group no-gutters">
-  <div class="col-12 col-md-8">
+  <div class="col">
+    <button type="button" class="btn btn-outline-primary login" data-toggle="modal" data-target="#login">Join</button>
+  </div>
+  <div class="col-12 col-md-8 mr-1">
     <input placeholder="search for location" id="place" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl">
   </div>
   <div class="col">
-    <button type="button" class="btn btn-success weather" data-toggle="modal" data-target="#weather">Weather</button>
+    <button (click)="getWeather()" type="button" class="btn btn-success weather" data-toggle="modal" data-target="#weather">Weather</button>
   </div>
   <div class="col">
-    <button type="button" class="btn btn-warning crime" data-toggle="modal" data-target="#crime">Crime</button>
+    <button (click)="getCrime()" type="button" class="btn btn-warning crime" data-toggle="modal" data-target="#crime">Crime</button>
   </div>
 </div>
 <div class="row">
-  <div class="col">
+  <div class="col" *ngIf="latitude && longitude">
     <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
       <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
     </agm-map>
     <!-- Insert Bootstrap modals -->
-    <app-modal></app-modal>
+    <app-modal [weatherData]="weatherData" [locationName]="locationName" [crimes]="crimes"></app-modal>
   </div>
 </div>
 </div>

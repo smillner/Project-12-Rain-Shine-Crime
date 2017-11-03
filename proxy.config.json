@@ -1,5 +1,15 @@
 {
-	"/api/*": {
+	"/api/weather": {
+		"target": "http://localhost:3000",
+		"security": false,
+		"logLevel": "debug"
+	},
+	"/api/crime": {
+		"target": "http://localhost:3000",
+		"security": false,
+		"logLevel": "debug"
+	},
+	"/register": {
 		"target": "http://localhost:3000",
 		"security": false,
 		"logLevel": "debug"

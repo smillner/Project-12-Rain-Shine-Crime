@@ -3,7 +3,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { AgmCoreModule } from '@agm/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { MapsComponent, ModalComponent, MapService, CrimeService, WeatherService } from './components';
+import { MapsComponent, ModalComponent, MapService, CrimeService, WeatherService, LoginService } from './components';
 
 import { AppComponent } from './app.component';
 // get Google Maps API key
@@ -13,7 +13,7 @@ import { googleMapsAPIKey } from './config';
   declarations: [
     AppComponent,
     MapsComponent,
-    ModalComponent
+    ModalComponent,
   ],
   imports: [
   	AgmCoreModule.forRoot({
@@ -25,7 +25,7 @@ import { googleMapsAPIKey } from './config';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [ MapService, CrimeService, WeatherService ],
+  providers: [ MapService, CrimeService, WeatherService, LoginService, ModalComponent, MapsComponent ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
