@@ -8,7 +8,7 @@ const User = require('../model/user');
 const spotcrime = require('spotcrime');
 
 //weather api key
-const weatherKey = config.weatherKey;
+const weatherKey = config.key;
 
 // use weather api to retrieve data for location
 router.get('/api/weather/:coordinates', (req, res, next) => {
