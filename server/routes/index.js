@@ -35,6 +35,7 @@ router.get('/api/crime/:latitude/:longitude', (req, res, next) => {
 	// 	res.send(crimes);
 	// });
 	request({'url': `https://api.spotcrime.com/crimes.json?lat=${latitude}&lon=${longitude}&radius=0.02&key=privatekeyforspotcrimepublicusers-commercialuse-877.410.1607&_=1509493804097`,
+<<<<<<< HEAD
              'proxy': 'http://scooter237:taco1234@us-wa.proxymesh.com:31280'
             },
 		(error, response, body) => {
