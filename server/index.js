@@ -1,6 +1,7 @@
 'use strict';
 
 const express = require('express');
+const path = require('path');
 const bodyParser = require('body-parser').json;
 const app = express();
 const logger = require('morgan');
@@ -10,7 +11,7 @@ const MongoStore = require('connect-mongo')(session);
 
 // mongodb connection
 if(process.env.NODE_ENV === 'production') {
-	mongoose.connect('mongodb://heroku_c6qkdqmm:2U4c3021@ds245615.mlab.com:45615/heroku_c6qkdqmm');
+	mongoose.connect('mongodb://heroku_c6qkdqmm:{{password}}@ds245615.mlab.com:45615/heroku_c6qkdqmm');
 } else {
 	mongoose.connect('mongodb://localhost:27017/rainshinecrime');
 }
@@ -39,12 +40,18 @@ app.use(session({
 app.use(logger('dev'));
 
 
-app.use('/', express.static('public'));
+app.use(express.static(path.join(__dirname, '../dist')));
 app.use(bodyParser());
 
 // include routes
 const routes = require('./routes/index');
 app.use('/', routes);
+
+
+app.get('*', (req, res) => {
+	console.log(__dirname);
+  res.sendFile(path.join(__dirname, '../dist/index.html'));
+});
 
 // catch 404 and forward to global error handler
 app.use(function(req, res, next) {

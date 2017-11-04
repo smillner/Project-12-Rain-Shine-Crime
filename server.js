@@ -1,4 +1,4 @@
-'use strict';
+/*'use strict';
 
 const express = require('express');
 const path = require('path');
@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'dist')));
 
 // include routes
-app.use('/api', api)
+app.use('/', api)
 
 // Catch all other routes and return the index file
 app.get('*', (req, res) => {
@@ -40,3 +40,4 @@ const port = process.env.PORT || 3000;
 app.listen(port, () => {
 	console.log('Server is running on port', port);
 });
+*/

@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "node server.js",
+    "start": "node server/index.js",
     "dev": "ng serve --proxy-config proxy.config.json",
     "build": "ng build",
     "test": "ng test",
@@ -44,6 +44,7 @@
     "morgan": "^1.9.0",
     "path": "^0.12.7",
     "rxjs": "^5.4.2",
+    "spotcrime": "^1.0.1",
     "typescript": "~2.3.3",
     "zone.js": "^0.8.14"
   },

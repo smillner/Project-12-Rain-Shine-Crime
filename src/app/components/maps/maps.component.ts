@@ -101,7 +101,9 @@ export class MapsComponent implements OnInit {
     this.crimeService.getCrimeData(this.coordinates)
         .subscribe( res => { 
           // return part of string that can be parsed
-          this.crimes = JSON.parse(res.split('(').pop().split(')').shift());
+          console.log(JSON.parse(res));
+          this.crimes = JSON.parse(res);
+          // this.crimes = JSON.parse(res.split('(').pop().split(')').shift());
         },
         err => { 
           console.log(err);

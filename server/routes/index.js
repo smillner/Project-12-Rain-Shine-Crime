@@ -5,12 +5,13 @@ const router = express.Router();
 const request = require('request');
 const config = require('../config');
 const User = require('../model/user');
+const spotcrime = require('spotcrime');
 
 //weather api key
 const weatherKey = config.weatherKey;
 
 // use weather api to retrieve data for location
-router.get('/weather/:coordinates', (req, res, next) => {
+router.get('/api/weather/:coordinates', (req, res, next) => {
 	let coordinates = req.params.coordinates;
 	request(`https://api.darksky.net/forecast/${weatherKey}/${coordinates}`, (error, response, body) => {
 		return res.send(body);
@@ -18,15 +19,26 @@ router.get('/weather/:coordinates', (req, res, next) => {
 });
 
 //use crime api to retrieve data for location
-router.get('/crime/:latitude/:longitude', (req, res, next) => { 
+router.get('/api/crime/:latitude/:longitude', (req, res, next) => { 
 	let latitude = req.params.latitude;
 	let longitude = req.params.longitude;
-	request(`https://api.spotcrime.com/crimes.json?lat=${latitude}&lon=${longitude}&radius=0.02&callback=jQuery213027649028043821566_1509493804094&key=privatekeyforspotcrimepublicusers-commercialuse-877.410.1607&_=1509493804097`,
-		(error, response, body) => {
-			console.log(error, response, body);
+	let coordinates = {
+		lat: latitude,
+		lon: longitude
+	};
+	// radius of search in miles
+	let radius = 5;
+
+	spotcrime.getCrimes(coordinates, radius, (err, crimes) => {
+		console.log(res.body);
+		res.send(crimes);
+	});
+	// request(`https://api.spotcrime.com/crimes.json?lat=${latitude}&lon=${longitude}&radius=0.02&callback=jQuery213027649028043821566_1509493804094&key=privatekeyforspotcrimepublicusers-commercialuse-877.410.1607&_=1509493804097`,
+	// 	(error, response, body) => {
+	// 		console.log(error, response, body);
 			
-			return res.send(body);
-		});
+	// 		return res.send(body);
+	// 	});
 });
 
 // post user info
