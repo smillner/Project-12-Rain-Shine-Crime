@@ -10,11 +10,12 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 
 // mongodb connection
-if(process.env.NODE_ENV === 'production') {
-	mongoose.connect('mongodb://heroku_c6qkdqmm:{{password}}@ds245615.mlab.com:45615/heroku_c6qkdqmm');
-} else {
-	mongoose.connect('mongodb://localhost:27017/rainshinecrime');
-}
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/rainshinecrime');
+// if(process.env.NODE_ENV === 'production') {
+// 	mongoose.connect('mongodb://heroku_c6qkdqmm:{{password}}@ds245615.mlab.com:45615/heroku_c6qkdqmm');
+// } else {
+// 	mongoose.connect('mongodb://localhost:27017/rainshinecrime');
+// }
 
 const db = mongoose.connection;
 
@@ -68,6 +69,8 @@ app.use(function(err, req, res, next) {
   });
 });
 
-app.listen(3000, () => {
-	console.log('Server is running on 3000.');
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => {
+	console.log('Server is running on port', port);
 });
