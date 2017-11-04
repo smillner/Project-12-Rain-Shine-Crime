@@ -97,13 +97,18 @@ export class MapsComponent implements OnInit {
   }
 
   getCrime() {
+    // get location name with coordinates
+    this.mapService.getLocationName(this.latitude, this.longitude)
+      .then(name => {
+        this.locationName = name.toString();
+      });
+      
     // use service to retrieve crime stats for selected city 
     this.crimeService.getCrimeData(this.coordinates)
         .subscribe( res => { 
-          // return part of string that can be parsed
-          console.log(JSON.parse(res));
           this.crimes = JSON.parse(res);
-          // this.crimes = JSON.parse(res.split('(').pop().split(')').shift());
+          console.log(this.crimes);
+          return this.crimes;
         },
         err => { 
           console.log(err);
