@@ -42,9 +42,10 @@ router.get('/api/crime/:latitude/:longitude', (req, res, next) => {
 
 	http.request( options,
 		(res) => {
-
 			console.log('status code' + res.statusCode);
 			console.log('headers' + res.headers);
+			console.log(res);
+			
 			return res.send(body);
 		});
 });
