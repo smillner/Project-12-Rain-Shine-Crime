@@ -39,7 +39,6 @@
     "core-js": "^2.4.1",
     "express": "^4.15.5",
     "express-session": "^1.15.6",
-    "http": "0.0.0",
     "mongoose": "^4.12.6",
     "morgan": "^1.9.0",
     "path": "^0.12.7",
