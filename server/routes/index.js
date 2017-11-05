@@ -5,7 +5,6 @@ const router = express.Router();
 const request = require('request');
 const config = require('../config');
 const User = require('../model/user');
-const url = require('url');
 
 //weather api key
 const weatherKey = config.key;
@@ -27,27 +26,23 @@ router.get('/api/crime/:latitude/:longitude', (req, res, next) => {
 		lon: longitude
 	};
 
-	// use proximo add on to provide static IP address for spotcrime api
-	// let proxy = url.parse(process.env.PROXIMO_URL);
+	// radius of search in miles
+	// let radius = 5;
 
-	// let options = {
-	//     hostname: proxy.hostname,
-	//     port:     proxy.port || 80,
-	//     path:     `https://api.spotcrime.com/crimes.json?lat=${latitude}&lon=${longitude}&radius=0.02&key=privatekeyforspotcrimepublicusers-commercialuse-877.410.1607&_=1509493804097`,
-	//     headers:  {
-	//     	"Proxy-Authorization": `Basic ${new Buffer(proxy.auth).toString("base64")}`
-	// 	}
-	// };
-
-	request(`https://api.spotcrime.com/crimes.json?lat=${latitude}&lon=${longitude}&radius=0.02&key=privatekeyforspotcrimepublicusers-commercialuse-877.410.1607&_=1509493804097`,
-	{
+	// spotcrime.getCrimes(coordinates, radius, (err, crimes) => {
+	// 	console.log(res.body);
+	// 	res.send(crimes);
+	// });
+	request({
+		'url':`https://api.spotcrime.com/crimes.json?lat=${latitude}&lon=${longitude}&radius=0.02&key=privatekeyforspotcrimepublicusers-commercialuse-877.410.1607&_=1509493804097`,
 		'proxy': 'http://scooter237:taco1234@us-wa.proxymesh.com:31280'
-	}
-		(err, res, body) => {
-			res.send(body);
-			
+	},
+		(error, response, body) => {
+			return res.send(body);
 		});
 });
+
+// 'proxy': 'http://scooter237:taco1234@us-wa.proxymesh.com:31280'
 
 // post user info
 router.post('/register', (req, res, next) => {
