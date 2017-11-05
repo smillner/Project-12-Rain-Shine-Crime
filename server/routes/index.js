@@ -38,12 +38,10 @@ router.get('/api/crime/:latitude/:longitude', (req, res, next) => {
 	    	"Proxy-Authorization": `Basic ${new Buffer(proxy.auth).toString("base64")}`
 		}
 	};
-	console.log(options.headers);
+	console.log(options);
 
 	http.request( options,
 		(res) => {
-			console.log('status code' + res.statusCode);
-			console.log('headers' + res.headers);
 			console.log(res);
 			
 			return res.send(body);
