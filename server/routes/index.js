@@ -29,7 +29,7 @@ router.get('/api/crime/:latitude/:longitude', (req, res, next) => {
 
 	// use proximo add on to provide static IP address for spotcrime api
 	let proxy = url.parse(process.env.PROXIMO_URL);
-	console.log(proxy);
+	console.log('proxy   ', proxy);
 	let options = {
 	    hostname: proxy.hostname,
 	    port:     proxy.port || 80,
@@ -45,7 +45,6 @@ router.get('/api/crime/:latitude/:longitude', (req, res, next) => {
 			console.log('Status Code', res.statusCode);
 			console.log('Headers', res.headers);
 			
-			return res.send(res);
 		});
 });
 
