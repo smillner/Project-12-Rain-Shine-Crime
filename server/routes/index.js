@@ -40,7 +40,7 @@ router.get('/api/crime/:latitude/:longitude', (req, res, next) => {
 	};
 	console.log('Header', options.headers);
 
-	http.get(options,
+	request(options,
 		(res) => {
 			console.log('Status Code', res.statusCode);
 			console.log('Headers', res.headers);
