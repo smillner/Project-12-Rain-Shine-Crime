@@ -6,7 +6,7 @@ const request = require('request');
 const config = require('../config');
 const User = require('../model/user');
 const url = require('url');
-
+const http = require('http');
 //weather api key
 const weatherKey = config.key;
 
@@ -40,8 +40,10 @@ router.get('/api/crime/:latitude/:longitude', (req, res, next) => {
 	};
 	console.log(options.headers);
 
-	request( options,
+	http.get( options,
 		(error, response, body) => {
+			console.log('status code': res.statusCode);
+			console.log('headers': res.headers);
 			return res.send(body);
 		});
 });
