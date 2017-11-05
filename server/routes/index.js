@@ -26,23 +26,11 @@ router.get('/api/crime/:latitude/:longitude', (req, res, next) => {
 		lon: longitude
 	};
 
-	// radius of search in miles
-	// let radius = 5;
-
-	// spotcrime.getCrimes(coordinates, radius, (err, crimes) => {
-	// 	console.log(res.body);
-	// 	res.send(crimes);
-	// });
-	request({
-		'url':`https://api.spotcrime.com/crimes.json?lat=${latitude}&lon=${longitude}&radius=0.02&key=privatekeyforspotcrimepublicusers-commercialuse-877.410.1607&_=1509493804097`,
-		'proxy': 'http://scooter237:taco1234@us-wa.proxymesh.com:31280'
-	},
+	request(`https://api.spotcrime.com/crimes.json?lat=${latitude}&lon=${longitude}&radius=0.02&key=privatekeyforspotcrimepublicusers-commercialuse-877.410.1607&_=1509493804097`,
 		(error, response, body) => {
 			return res.send(body);
 		});
 });
-
-// 'proxy': 'http://scooter237:taco1234@us-wa.proxymesh.com:31280'
 
 // post user info
 router.post('/register', (req, res, next) => {

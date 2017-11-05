@@ -9,8 +9,8 @@ export class LoginService {
 	}
 
 	// sends user login information for authentication and authorization to view future features
-	register(email: string, password: string, confirmPassword: string) {console.log(email, password, confirmPassword);
-	    return this.httpClient.post(`/register`, {email, password, confirmPassword});
+	register(email: string, password: string, confirmPassword: string) {
+	    return this.httpClient.post('/register', {email, password, confirmPassword});
 	  } 
 
 }
