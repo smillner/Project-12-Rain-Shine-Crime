@@ -4,6 +4,8 @@ This app will retrieve weather data and crime stats by your current location or 
 
 This app displays my use of the MEAN stack and particularly Angular 2 using Typescript and ES6.
 
+The app is live @ https://rain-shine-crime.herokuapp.com/
+
 ## Prerequisites ##
 
 Node.js to run server locally
