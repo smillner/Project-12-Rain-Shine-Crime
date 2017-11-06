@@ -1,12 +1,30 @@
 # Rain-Shine-Crime (Work in Progress)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.3.
-
 This app will retrieve weather data and crime stats by your current location or the city you search for.
 
-## Development server
+This app displays my use of the MEAN stack and particularly Angular 2 using Typescript and ES6.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Prerequisites ##
+
+Node.js to run server locally
+
+MondoDB to create the database
+
+## Installing ##
+
+Run `npm install` in a separate terminal to download all dependencies.
+
+Run `mongod` to start MondoDB.
+
+Run `npm start` to start express server.
+
+Run `ng serve` or `npm run dev` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+## Deployment ##
+
+Run `npm run build` to build to dist folder
+
+Run `npm start` to serve app and start express server
 
 ## Code scaffolding
 

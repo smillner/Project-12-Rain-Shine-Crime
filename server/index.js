@@ -12,7 +12,7 @@ const MongoStore = require('connect-mongo')(session);
 // mongodb connection
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/rainshinecrime');
 // if(process.env.NODE_ENV === 'production') {
-// 	mongoose.connect('mongodb://heroku_c6qkdqmm:{{password}}@ds245615.mlab.com:45615/heroku_c6qkdqmm');
+// 	mongoose.connect('mongodb://{{username:password}}@ds245615.mlab.com:45615/heroku_c6qkdqmm');
 // } else {
 // 	mongoose.connect('mongodb://localhost:27017/rainshinecrime');
 // }
@@ -48,9 +48,8 @@ app.use(bodyParser());
 const routes = require('./routes/index');
 app.use('/', routes);
 
-
+// serve Angular app
 app.get('*', (req, res) => {
-	console.log(__dirname);
   res.sendFile(path.join(__dirname, '../dist/index.html'));
 });
 

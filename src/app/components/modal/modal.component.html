@@ -17,7 +17,7 @@
                     <ul class="pl-0">
                       <li class="list-group-item">{{weatherData.currently.summary}}</li>
                       <li class="list-group-item">Temp: {{weatherData.currently.temperature}}</li>
-                      <li class="list-group-item">Humidity: {{weatherData.currently.humidity*100}}%</li>
+                      <li class="list-group-item">Humidity: {{roundHumidity(weatherData.currently.humidity)}}%</li>
                       <li class="list-group-item">Wind speed: {{weatherData.currently.windSpeed}} mph</li>
                     </ul>
                   </div>
@@ -31,7 +31,7 @@
                       <li class="list-group-item">{{weatherData.daily.data[1].summary}}</li>
                       <li class="list-group-item">High: {{weatherData.daily.data[1].temperatureHigh}}</li>
                       <li class="list-group-item">Low: {{weatherData.daily.data[1].temperatureLow}}</li>
-                      <li class="list-group-item">Humidity: {{weatherData.daily.data[1].humidity*100}}%</li>
+                      <li class="list-group-item">Humidity: {{roundHumidity(weatherData.daily.data[1].humidity)}}%</li>
                       <li class="list-group-item">Wind speed: {{weatherData.daily.data[1].windSpeed}} mph</li>
                     </ul>
                   </div>

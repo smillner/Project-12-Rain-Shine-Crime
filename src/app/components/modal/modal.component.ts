@@ -17,6 +17,7 @@ export class ModalComponent implements OnInit {
   @Input() weatherData;
   @Input() locationName;
   @Input() crimes;
+  @Input() roundHumidity;
   registerResponse: string;
   email: string = "";
   password: string = "";

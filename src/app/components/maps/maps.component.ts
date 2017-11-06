@@ -96,6 +96,11 @@ export class MapsComponent implements OnInit {
       });
   }
 
+  roundHumidity(humidity) {
+    let percentage = parseFloat(humidity)*100;
+    return Math.round(percentage).toString();
+  }
+
   getCrime() {
     // get location name with coordinates
     this.mapService.getLocationName(this.latitude, this.longitude)
